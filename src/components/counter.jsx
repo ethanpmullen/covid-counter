@@ -22,15 +22,15 @@ function Counter() {
 
   return (
     <React.Fragment>
-      <div class="counterWrapper">
+      <div className="counterWrapper">
         <button onClick={handleInput} id="currentCount">
           {value}
         </button>
       </div>
-      <div class="buttonWrapper">
+      <div className="buttonWrapper">
         <button
           onClick={handleDecrement}
-          class="upAndDownButtons"
+          className="upAndDownButtons"
           id="downArrowToDecrement"
         >
           ⬇
@@ -40,7 +40,7 @@ function Counter() {
         </button>
         <button
           onClick={handleIncrement}
-          class="upAndDownButtons"
+          className="upAndDownButtons"
           id="upArrowToIncrement"
         >
           ⬆

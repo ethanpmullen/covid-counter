@@ -2,10 +2,10 @@ import React from "react";
 
 function NavBar() {
   return (
-    <div class="headerWrapper">
-      <div class="title">BASIC COUNTER</div>
-      <div class="navigationWrapper">
-        <ul class="navBar">
+    <div className="headerWrapper">
+      <div className="title">BASIC COUNTER</div>
+      <div className="navigationWrapper">
+        <ul className="navBar">
           <li>
             <a href="index.html"> Main</a>
           </li>
