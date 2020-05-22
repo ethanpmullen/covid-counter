@@ -1,49 +1,53 @@
-import React, { Component } from "react";
-class Counter extends Component {
-  state = {
-    value: 0,
+import React, { useState } from "react";
+
+function Counter() {
+  const [value, setValue] = useState(0);
+
+  const handleDecrement = () => {
+    value !== 0 && setValue(value - 1);
   };
 
-  handleDecrement = () => {
-    this.state.value !== 0 && this.setState({ value: this.state.value - 1 });
+  const handleIncrement = () => {
+    setValue(value + 1);
   };
 
-  handleIncrement = () => {
-    this.setState({ value: this.state.value + 1 });
+  const handleReset = () => {
+    setValue(0);
   };
 
-  handleReset = () => {
-    this.setState({ value: 0 });
+  const handleInput = () => {
+    let newNum = +prompt("What would you like to reset to?", "0");
+    setValue(newNum);
   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <div class="counterWrapper">
-          <p id="currentCount"> {this.state.value} </p>
-        </div>
-        <div class="buttonWrapper">
-          <button
-            onClick={this.handleDecrement}
-            class="upAndDownButtons"
-            id="downArrowToDecrement"
-          >
-            ⬇
-          </button>
-          <button onClick={this.handleReset} id="resetButton">
-            Reset to 0
-          </button>
-          <button
-            onClick={this.handleIncrement}
-            class="upAndDownButtons"
-            id="upArrowToIncrement"
-          >
-            ⬆
-          </button>
-        </div>
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <div class="counterWrapper">
+        <button onClick={handleInput} id="currentCount">
+          {value}
+        </button>
+      </div>
+      <div class="buttonWrapper">
+        <button
+          onClick={handleDecrement}
+          class="upAndDownButtons"
+          id="downArrowToDecrement"
+        >
+          ⬇
+        </button>
+        <button onClick={handleReset} id="resetButton">
+          Reset to 0
+        </button>
+        <button
+          onClick={handleIncrement}
+          class="upAndDownButtons"
+          id="upArrowToIncrement"
+        >
+          ⬆
+        </button>
+      </div>
+    </React.Fragment>
+  );
 }
 
 export default Counter;
