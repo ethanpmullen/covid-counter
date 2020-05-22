@@ -12,11 +12,11 @@ function NavBar() {
           <li>
             <a href="about.html"> About</a>
           </li>
-          <li>
+          {/* <li>
             <a href="https://docs.google.com/document/d/1-_bpYqZ7PGYzkn_9E1bRAJKWLLN-EyK5nq6GWdcOBOM/edit?usp=sharing">
               Google Doc
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
