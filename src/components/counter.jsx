@@ -30,13 +30,13 @@ const Button = styled.button`
   height: 100px;
   color: black;
   border-radius: 25px;
+  font-family: "Arial Narrow";
+  display: inline-block;
 
   ${(props) =>
     props.upAndDown &&
     css`
       width: 200px;
-      display: inline-block;
-      font-family: "Arial Narrow";
       font-size: 60px;
       margin-left: 10px;
       margin-right: 10px;
@@ -60,7 +60,6 @@ const Button = styled.button`
       background-color: white;
       border: 2px solid black;
       width: 300px;
-      font-family: "Arial Narrow";
       font-size: 40px;
     `};
 
@@ -69,9 +68,7 @@ const Button = styled.button`
     css`
       background-color: #e4d8b4;
       width: 300px;
-      height: 100px;
       border-radius: 25px;
-      font-family: "Arial Narrow";
       font-size: 80px;
     `};
 `;

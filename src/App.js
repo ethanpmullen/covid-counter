@@ -9,7 +9,6 @@ const Navigation = styled.div`
   height: 80px;
 `;
 
-
 function App() {
   return (
     <div>
