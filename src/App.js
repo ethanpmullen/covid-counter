@@ -2,15 +2,22 @@ import React from "react";
 import "./App.css";
 import Counter from "./components/counter";
 import NavBar from "./components/navBar";
+import styled from "@emotion/styled";
+
+const Navigation = styled.div`
+  background-color: #75acc0;
+  height: 80px;
+`;
+
 
 function App() {
   return (
-    <React.Fragment>
-      <header>
+    <div>
+      <Navigation>
         <NavBar />
-      </header>
+      </Navigation>
       <Counter />
-    </React.Fragment>
+    </div>
   );
 }
 

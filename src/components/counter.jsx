@@ -1,12 +1,80 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import styled from "@emotion/styled";
+import { css } from "@emotion/core";
 
+// Action creator for redux
 function setValue(value) {
   return {
     type: "SET_VALUE",
     value,
   };
 }
+
+// Styles
+const CounterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 30px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 30px 10px;
+`;
+
+const Button = styled.button`
+  height: 100px;
+  color: black;
+  border-radius: 25px;
+
+  ${(props) =>
+    props.upAndDown &&
+    css`
+      width: 200px;
+      display: inline-block;
+      font-family: "Arial Narrow";
+      font-size: 60px;
+      margin-left: 10px;
+      margin-right: 10px;
+    `};
+
+  ${(props) =>
+    props.upArrowToIncrement &&
+    css`
+      background-color: #e86f68;
+    `};
+
+  ${(props) =>
+    props.downArrowToDecrement &&
+    css`
+      background-color: #50c878;
+    `};
+
+  ${(props) =>
+    props.resetButton &&
+    css`
+      background-color: white;
+      border: 2px solid black;
+      width: 300px;
+      font-family: "Arial Narrow";
+      font-size: 40px;
+    `};
+
+  ${(props) =>
+    props.currentCount &&
+    css`
+      background-color: #e4d8b4;
+      width: 300px;
+      height: 100px;
+      border-radius: 25px;
+      font-family: "Arial Narrow";
+      font-size: 80px;
+    `};
+`;
 
 function Counter() {
   const value = useSelector((state) => state.value);
@@ -33,30 +101,22 @@ function Counter() {
 
   return (
     <React.Fragment>
-      <div className="counterWrapper">
-        <button onClick={handleInput} id="currentCount">
+      <CounterWrapper>
+        <Button currentCount onClick={handleInput}>
           {value}
-        </button>
-      </div>
-      <div className="buttonWrapper">
-        <button
-          onClick={handleDecrement}
-          className="upAndDownButtons"
-          id="downArrowToDecrement"
-        >
+        </Button>
+      </CounterWrapper>
+      <ButtonWrapper>
+        <Button upAndDown upArrowToIncrement onClick={handleDecrement}>
           ⬇
-        </button>
-        <button onClick={handleReset} id="resetButton">
+        </Button>
+        <Button resetButton onClick={handleReset}>
           Reset to 0
-        </button>
-        <button
-          onClick={handleIncrement}
-          className="upAndDownButtons"
-          id="upArrowToIncrement"
-        >
+        </Button>
+        <Button upAndDown downArrowToDecrement onClick={handleIncrement}>
           ⬆
-        </button>
-      </div>
+        </Button>
+      </ButtonWrapper>
     </React.Fragment>
   );
 }

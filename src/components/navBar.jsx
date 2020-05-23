@@ -1,25 +1,70 @@
 import React from "react";
+import styled from "@emotion/styled";
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+`;
+
+const Title = styled.div`
+  order: 1;
+  color: white;
+  font-family: "Arial Narrow";
+  font-weight: bold;
+  font-style: italic;
+  font-size: 50px;
+  padding: 3px 5px;
+`;
+
+const NavigationWrapper = styled.div`
+  float: right;
+  order: 2;
+  text-decoration: none;
+  display: block;
+`;
+
+const NavigationBar = styled.ul`
+  padding: 1em;
+  list-style: none;
+  margin-top: 30px;
+  margin-right: 20px;
+  display: inline-block;
+`;
+
+const ListItem = styled.li`
+  margin-right: 20px;
+  display: inline-block;
+`;
+
+const Link = styled.a`
+  color: white;
+  font-family: "Arial Narrow";
+  font-size: 18px;
+  &:hover {
+    color: black;
+  }
+`;
 
 function NavBar() {
   return (
-    <div className="headerWrapper">
-      <div className="title">BASIC COUNTER</div>
-      <div className="navigationWrapper">
-        <ul className="navBar">
-          <li>
-            <a href="index.html"> Main</a>
-          </li>
-          <li>
-            <a href="about.html"> About</a>
-          </li>
-          {/* <li>
-            <a href="https://docs.google.com/document/d/1-_bpYqZ7PGYzkn_9E1bRAJKWLLN-EyK5nq6GWdcOBOM/edit?usp=sharing">
-              Google Doc
-            </a>
-          </li> */}
-        </ul>
-      </div>
-    </div>
+    <HeaderWrapper>
+      <Title>BASIC COUNTER</Title>
+      <NavigationWrapper>
+        <NavigationBar>
+          <ListItem>
+            <Link href="index.html"> Main</Link>
+          </ListItem>
+          <ListItem>
+            <Link href="about.html"> About</Link>
+          </ListItem>
+        </NavigationBar>
+      </NavigationWrapper>
+    </HeaderWrapper>
   );
 }
 
