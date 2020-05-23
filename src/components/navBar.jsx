@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -41,7 +42,7 @@ const ListItem = styled.li`
   display: inline-block;
 `;
 
-const Link = styled.a`
+const LinkStyle = styled.a`
   color: white;
   font-family: "Arial Narrow";
   font-size: 18px;
@@ -57,10 +58,14 @@ function NavBar() {
       <NavigationWrapper>
         <NavigationBar>
           <ListItem>
-            <Link href="index.html"> Main</Link>
+            <LinkStyle>
+              <Link to="/"> Home</Link>
+            </LinkStyle>
           </ListItem>
           <ListItem>
-            <Link href="about.html"> About</Link>
+            <LinkStyle>
+              <Link to="/about"> Home</Link>
+            </LinkStyle>
           </ListItem>
         </NavigationBar>
       </NavigationWrapper>

@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Counter from "./components/counter";
 import NavBar from "./components/navBar";
 import styled from "@emotion/styled";
 
@@ -8,15 +9,15 @@ const Navigation = styled.div`
   height: 80px;
 `;
 
-function About() {
+function Home() {
   return (
     <div>
       <Navigation>
         <NavBar />
       </Navigation>
-      <h1>This is an app created using React and Redux!</h1>
+      <Counter />
     </div>
   );
 }
 
-export default About;
+export default Home;

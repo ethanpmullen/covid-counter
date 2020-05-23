@@ -1,21 +1,14 @@
 import React from "react";
 import "./App.css";
-import Counter from "./components/counter";
-import NavBar from "./components/navBar";
-import styled from "@emotion/styled";
-
-const Navigation = styled.div`
-  background-color: #75acc0;
-  height: 80px;
-`;
+import Home from "./Home";
+import About from "./About";
+import { Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <Navigation>
-        <NavBar />
-      </Navigation>
-      <Counter />
+      <Route exact path="/" component={Home}></Route>
+      <Route exact path="/about" component={About}></Route>
     </div>
   );
 }
