@@ -3,10 +3,27 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+
+const initialState = { value: 0 };
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "SET_VALUE":
+      return Object.assign({}, state, { value: action.value });
+
+    default:
+      return state;
+  }
+};
+
+const store = createStore(reducer, initialState);
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("root")
 );
 

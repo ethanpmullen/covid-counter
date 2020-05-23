@@ -1,23 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+function setValue(value) {
+  return {
+    type: "SET_VALUE",
+    value,
+  };
+}
 
 function Counter() {
-  const [value, setValue] = useState(0);
+  const value = useSelector((state) => state.value);
+  const dispatch = useDispatch();
 
   const handleDecrement = () => {
-    value !== 0 && setValue(value - 1);
+    // const value = store.getState().value;
+    value !== 0 && dispatch(setValue(value - 1));
   };
 
   const handleIncrement = () => {
-    setValue(value + 1);
+    // const value = store.getState().value;
+    dispatch(setValue(value + 1));
   };
 
   const handleReset = () => {
-    setValue(0);
+    dispatch(setValue(0));
   };
 
   const handleInput = () => {
     let newNum = +prompt("What would you like to reset to?", "0");
-    setValue(newNum);
+    dispatch(setValue(newNum));
   };
 
   return (

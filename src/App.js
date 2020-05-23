@@ -9,7 +9,7 @@ function App() {
       <header>
         <NavBar />
       </header>
-      <Counter />;
+      <Counter />
     </React.Fragment>
   );
 }
