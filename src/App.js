@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Home from "./Home";
 import About from "./About";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 function App() {
   return (

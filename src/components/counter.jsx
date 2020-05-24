@@ -1,29 +1,61 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "@emotion/styled";
-import { css } from "@emotion/core";
 
 // Action creator for redux
-function setValue(value) {
+function doSetValue(value) {
   return {
     type: "SET_VALUE",
     value,
   };
 }
 
+function Counter() {
+  const value = useSelector((state) => state.value);
+  const dispatch = useDispatch();
+
+  function handleDecrement() {
+    if (value === 0) {
+      return;
+    }
+    dispatch(doSetValue(value - 1));
+  }
+
+  function handleIncrement() {
+    dispatch(doSetValue(value + 1));
+  }
+
+  function handleReset() {
+    dispatch(doSetValue(0));
+  }
+
+  function handleInput() {
+    let newNum = +prompt("What would you like to reset to?", "0");
+    dispatch(doSetValue(newNum));
+  }
+
+  return (
+    <div>
+      <Container>
+        <CurrentCount onClick={handleInput}>{value}</CurrentCount>
+      </Container>
+      <Container>
+        <UpArrowToIncrement onClick={handleDecrement}>⬇</UpArrowToIncrement>
+        <ResetButton onClick={handleReset}>Reset to 0</ResetButton>
+        <DownArrowToDecrement onClick={handleIncrement}>⬆</DownArrowToDecrement>
+      </Container>
+    </div>
+  );
+}
+
+export default Counter;
+
 // Styles
-const CounterWrapper = styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
   margin-top: 30px;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: 30px 10px;
 `;
 
 const Button = styled.button`
@@ -32,90 +64,33 @@ const Button = styled.button`
   border-radius: 25px;
   font-family: "Arial Narrow";
   display: inline-block;
-
-  ${(props) =>
-    props.upAndDown &&
-    css`
-      width: 200px;
-      font-size: 60px;
-      margin-left: 10px;
-      margin-right: 10px;
-    `};
-
-  ${(props) =>
-    props.upArrowToIncrement &&
-    css`
-      background-color: #e86f68;
-    `};
-
-  ${(props) =>
-    props.downArrowToDecrement &&
-    css`
-      background-color: #50c878;
-    `};
-
-  ${(props) =>
-    props.resetButton &&
-    css`
-      background-color: white;
-      border: 2px solid black;
-      width: 300px;
-      font-size: 40px;
-    `};
-
-  ${(props) =>
-    props.currentCount &&
-    css`
-      background-color: #e4d8b4;
-      width: 300px;
-      border-radius: 25px;
-      font-size: 80px;
-    `};
 `;
 
-function Counter() {
-  const value = useSelector((state) => state.value);
-  const dispatch = useDispatch();
+const CurrentCount = styled(Button)`
+  background-color: #e4d8b4;
+  width: 300px;
+  border-radius: 25px;
+  font-size: 80px;
+`;
 
-  const handleDecrement = () => {
-    // const value = store.getState().value;
-    value !== 0 && dispatch(setValue(value - 1));
-  };
+const UpAndDown = styled(Button)`
+  width: 200px;
+  font-size: 60px;
+  margin-left: 10px;
+  margin-right: 10px;
+`;
 
-  const handleIncrement = () => {
-    // const value = store.getState().value;
-    dispatch(setValue(value + 1));
-  };
+const UpArrowToIncrement = styled(UpAndDown)`
+  background-color: #e86f68;
+`;
 
-  const handleReset = () => {
-    dispatch(setValue(0));
-  };
+const DownArrowToDecrement = styled(UpAndDown)`
+  background-color: #50c878;
+`;
 
-  const handleInput = () => {
-    let newNum = +prompt("What would you like to reset to?", "0");
-    dispatch(setValue(newNum));
-  };
-
-  return (
-    <React.Fragment>
-      <CounterWrapper>
-        <Button currentCount onClick={handleInput}>
-          {value}
-        </Button>
-      </CounterWrapper>
-      <ButtonWrapper>
-        <Button upAndDown upArrowToIncrement onClick={handleDecrement}>
-          ⬇
-        </Button>
-        <Button resetButton onClick={handleReset}>
-          Reset to 0
-        </Button>
-        <Button upAndDown downArrowToDecrement onClick={handleIncrement}>
-          ⬆
-        </Button>
-      </ButtonWrapper>
-    </React.Fragment>
-  );
-}
-
-export default Counter;
+const ResetButton = styled(Button)`
+  background-color: white;
+  border: 2px solid black;
+  width: 300px;
+  font-size: 40px;
+`;

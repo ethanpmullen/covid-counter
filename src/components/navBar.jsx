@@ -2,7 +2,25 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 
-const HeaderWrapper = styled.div`
+function NavBar() {
+  return (
+    <Container>
+      <Title>BASIC COUNTER</Title>
+      <NavigationWrapper>
+        <LinkStyle>
+          <Link to="/"> Home</Link>
+        </LinkStyle>
+        <LinkStyle>
+          <Link to="/about"> About</Link>
+        </LinkStyle>
+      </NavigationWrapper>
+    </Container>
+  );
+}
+
+export default NavBar;
+
+const Container = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-items: baseline;
@@ -10,12 +28,13 @@ const HeaderWrapper = styled.div`
   padding: 0;
   margin: 0;
   list-style: none;
+  background-color: #75acc0;
+  height: 80px;
+  font-family: "Arial Narrow";
+  color: white;
 `;
 
 const Title = styled.div`
-  order: 1;
-  color: white;
-  font-family: "Arial Narrow";
   font-weight: bold;
   font-style: italic;
   font-size: 50px;
@@ -23,54 +42,15 @@ const Title = styled.div`
 `;
 
 const NavigationWrapper = styled.div`
-  float: right;
-  order: 2;
-  text-decoration: none;
-  display: block;
-`;
-
-const NavigationBar = styled.ul`
   padding: 1em;
-  list-style: none;
-  margin-top: 30px;
-  margin-right: 20px;
-  display: inline-block;
+  margin: 30px;
+  display: flex;
 `;
 
-const ListItem = styled.li`
-  margin-right: 20px;
-  display: inline-block;
-`;
-
-const LinkStyle = styled.a`
-  color: white;
-  font-family: "Arial Narrow";
+const LinkStyle = styled.div`
   font-size: 18px;
+  margin-left: 10px;
   &:hover {
     color: black;
   }
 `;
-
-function NavBar() {
-  return (
-    <HeaderWrapper>
-      <Title>BASIC COUNTER</Title>
-      <NavigationWrapper>
-        <NavigationBar>
-          <ListItem>
-            <LinkStyle>
-              <Link to="/"> Home</Link>
-            </LinkStyle>
-          </ListItem>
-          <ListItem>
-            <LinkStyle>
-              <Link to="/about"> Home</Link>
-            </LinkStyle>
-          </ListItem>
-        </NavigationBar>
-      </NavigationWrapper>
-    </HeaderWrapper>
-  );
-}
-
-export default NavBar;
