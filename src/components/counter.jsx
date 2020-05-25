@@ -31,6 +31,9 @@ function Counter() {
 
   function handleInput() {
     let newNum = +prompt("What would you like to reset to?", "0");
+    if (!newNum) {
+      return;
+    }
     dispatch(doSetValue(newNum));
   }
 
