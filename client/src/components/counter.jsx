@@ -1,57 +1,53 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import styled from "@emotion/styled";
+import {
+  doIncrement,
+  doDecrement,
+  doReset,
+  doInitializeCount,
+} from "./actions";
 
-// Action creator for redux
-function doSetValue(value) {
-  return {
-    type: "SET_VALUE",
-    value,
-  };
-}
+const select = (state) => ({
+  value: state.value,
+});
 
-function Counter() {
-  const value = useSelector((state) => state.value);
-  const dispatch = useDispatch();
+const actions = {
+  increment: doIncrement(),
+  decrement: doDecrement(),
+  reset: doReset(),
+  // initializeCount: dispatch(doInitializeCount()),
+};
 
-  function handleDecrement() {
-    if (value === 0) {
-      return;
-    }
-    dispatch(doSetValue(value - 1));
-  }
+function Counter({ value, increment, decrement, reset, initializeCount }) {
+  // function handleInput() {
+  //   let newNum = +prompt("What would you like to reset to?", "0");
+  //   if (!newNum) {
+  //     return;
+  //   }
+  //   dispatch(doSetValue(newNum));
+  // }
 
-  function handleIncrement() {
-    dispatch(doSetValue(value + 1));
-  }
-
-  function handleReset() {
-    dispatch(doSetValue(0));
-  }
-
-  function handleInput() {
-    let newNum = +prompt("What would you like to reset to?", "0");
-    if (!newNum) {
-      return;
-    }
-    dispatch(doSetValue(newNum));
-  }
+  // useEffect(() => initializeCount, []);
 
   return (
     <div>
       <Container>
-        <CurrentCount onClick={handleInput}>{value}</CurrentCount>
+        <CurrentCount>{value}</CurrentCount>
       </Container>
       <Container>
-        <UpArrowToIncrement onClick={handleDecrement}>⬇</UpArrowToIncrement>
-        <ResetButton onClick={handleReset}>Reset to 0</ResetButton>
-        <DownArrowToDecrement onClick={handleIncrement}>⬆</DownArrowToDecrement>
+        <UpArrowToIncrement onClick={value > 0 ? () => decrement() : null}>
+          ⬇
+        </UpArrowToIncrement>
+        <ResetButton onClick={() => reset()}>Reset to 0</ResetButton>
+        <DownArrowToDecrement onClick={() => increment()}>
+          ⬆
+        </DownArrowToDecrement>
       </Container>
     </div>
   );
 }
-
-export default Counter;
+export default connect(select, actions)(Counter);
 
 // Styles
 const Container = styled.div`

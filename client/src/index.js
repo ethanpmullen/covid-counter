@@ -4,22 +4,35 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const initialState = { value: 0 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_VALUE":
-      return { ...state, value: action.value };
-
+    case "INCREMENTED": {
+      console.log(action.payload.value);
+      return { ...state, value: action.payload.value };
+    }
+    case "DECREMENTED":
+      return { ...state, value: action.payload.value };
+    case "RESET":
+      return { ...state, value: action.payload.value };
+    case "INITIALIZED":
+      return { ...state, value: action.payload.value };
     default:
       return state;
   }
 };
 
-const store = createStore(reducer, initialState);
+const store = createStore(
+  reducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 ReactDOM.render(
   <BrowserRouter>
