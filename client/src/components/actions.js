@@ -43,3 +43,15 @@ export function doInitializeCount() {
     );
   };
 }
+
+export function doInput(newValue) {
+  console.log(newValue);
+  return (dispatch, getState) => {
+    axios.post("/api", { type: "INPUT", newValue }).then((response) =>
+      dispatch({
+        type: "INPUTTED_VALUE",
+        payload: { value: response.data.value },
+      })
+    );
+  };
+}

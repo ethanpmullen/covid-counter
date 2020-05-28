@@ -6,6 +6,7 @@ import {
   doDecrement,
   doReset,
   doInitializeCount,
+  doInput,
 } from "./actions";
 
 const select = (state) => ({
@@ -13,27 +14,38 @@ const select = (state) => ({
 });
 
 const actions = {
-  increment: doIncrement(),
-  decrement: doDecrement(),
-  reset: doReset(),
-  // initializeCount: dispatch(doInitializeCount()),
+  increment: () => doIncrement(),
+  decrement: () => doDecrement(),
+  reset: () => doReset(),
+  initializeCount: () => doInitializeCount(),
+  input: (input) => doInput(input),
 };
 
-function Counter({ value, increment, decrement, reset, initializeCount }) {
-  // function handleInput() {
-  //   let newNum = +prompt("What would you like to reset to?", "0");
-  //   if (!newNum) {
-  //     return;
-  //   }
-  //   dispatch(doSetValue(newNum));
-  // }
+function Counter({
+  value,
+  increment,
+  decrement,
+  reset,
+  initializeCount,
+  input,
+}) {
+  function handleInput() {
+    let newNum = +prompt("What would you like to reset to?", "0");
+    if (!newNum) {
+      return;
+    }
+    input(newNum);
+  }
 
-  // useEffect(() => initializeCount, []);
+  useEffect(() => {
+    console.log("I mounted!");
+    initializeCount();
+  }, []);
 
   return (
     <div>
       <Container>
-        <CurrentCount>{value}</CurrentCount>
+        <CurrentCount onClick={handleInput}>{value}</CurrentCount>
       </Container>
       <Container>
         <UpArrowToIncrement onClick={value > 0 ? () => decrement() : null}>

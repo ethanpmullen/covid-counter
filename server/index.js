@@ -16,6 +16,8 @@ app.post("/api", (req, res) => {
     if (req.body.type === "INCREMENT") value = value + 1;
     else if (req.body.type === "DECREMENT") value = value - 1;
     else if (req.body.type === "RESET") value = 0;
+    else if (req.body.type === "INPUT") value = req.body.newValue;
+
     res.send({ value });
     console.log(value);
   } catch (err) {

@@ -21,7 +21,9 @@ const reducer = (state = initialState, action) => {
       return { ...state, value: action.payload.value };
     case "RESET":
       return { ...state, value: action.payload.value };
-    case "INITIALIZED":
+    case "INITIALIZED_COUNT":
+      return { ...state, value: action.payload.value };
+    case "INPUTTED_VALUE":
       return { ...state, value: action.payload.value };
     default:
       return state;
